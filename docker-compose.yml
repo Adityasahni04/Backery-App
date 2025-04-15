@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: bakery-db
+    container_name: bakery-db
+    environment:
+      POSTGRES_USER: aditya
+      POSTGRES_PASSWORD: aditya
+      POSTGRES_DB: indianbakery
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    image: bakery-backend
+    container_name: bakery-backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: aditya
+      DB_PASSWORD: aditya
+      DB_NAME: indianbakery
+      DB_PORT: 5432
+
+  frontend:
+    image: bakery-frontend
+    container_name: bakery-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
+
+
+

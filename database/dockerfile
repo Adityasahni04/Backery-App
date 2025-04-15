@@ -1,0 +1,10 @@
+# Use the official PostgreSQL 13 base image
+FROM postgres:13
+
+# Set environment variables
+ENV POSTGRES_USER=aditya
+ENV POSTGRES_PASSWORD=aditya
+ENV POSTGRES_DB=indianbakery
+
+# Copy the initialization SQL script into the image
+COPY init.sql /docker-entrypoint-initdb.d/
