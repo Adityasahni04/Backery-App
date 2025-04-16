@@ -28,7 +28,7 @@ function ServicePage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8000/listproducts");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/listproducts`);
       console.log("Fetched response:", response.data);
 
       // Handle various possible structures
@@ -54,7 +54,7 @@ function ServicePage() {
   const addProduct = async (product) => {
     try {
       // Send POST request to backend with the full product object
-      const response = await axios.post("http://localhost:8000/addproduct", product);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/addproduct`, product);
   
       // Assuming backend returns the saved product with ID
       const savedProduct = response.data;
@@ -73,7 +73,7 @@ function ServicePage() {
   const updateProduct = async (updatedProduct) => {
     try {
       // Send the updated product data to the backend
-      const response = await axios.put(`http://localhost:8000/updateproduct/${updatedProduct.id}`, updatedProduct);
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/updateproduct/${updatedProduct.id}`, updatedProduct);
   
       // Assuming the backend returns the updated product
       const updatedProductFromDB = response.data;
@@ -95,7 +95,7 @@ function ServicePage() {
   
     try {
       // Send DELETE request to the backend to remove the product
-      const response = await axios.delete(`http://localhost:8000/deleteproduct/${deleteProduct.id}`);
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/deleteproduct/${deleteProduct.id}`);
   
       // Filter out the deleted product from the local state
       setProducts(products.filter((p) => p.id !== deleteProduct.id));

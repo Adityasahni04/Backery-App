@@ -1,0 +1,49 @@
+{
+    "family": "bakery-backend-task",
+    "requiresCompatibilities": ["FARGATE"],
+    "networkMode": "awsvpc",
+    "cpu": "512",
+    "memory": "1024",
+    "executionRoleArn": "arn:aws:iam::794038217891:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "name": "bakery-db",
+        "image": "794038217891.dkr.ecr.ap-south-1.amazonaws.com/bakery-db",
+        "essential": true,
+        "memory": 512,
+        "cpu": 256,
+        "portMappings": [
+          {
+            "containerPort": 5432,
+            "protocol": "tcp"
+          }
+        ],
+        "environment": [
+          { "name": "POSTGRES_USER", "value": "aditya" },
+          { "name": "POSTGRES_PASSWORD", "value": "aditya" },
+          { "name": "POSTGRES_DB", "value": "indianbakery" }
+        ]
+      },
+      {
+        "name": "bakery-backend",
+        "image": "794038217891.dkr.ecr.ap-south-1.amazonaws.com/bakery-backend",
+        "essential": true,
+        "memory": 512,
+        "cpu": 256,
+        "portMappings": [
+          {
+            "containerPort": 8000,
+            "protocol": "tcp"
+          }
+        ],
+        "environment": [
+          { "name": "DB_HOST", "value": "localhost" },
+          { "name": "DB_USER", "value": "aditya" },
+          { "name": "DB_PASSWORD", "value": "aditya" },
+          { "name": "DB_NAME", "value": "indianbakery" },
+          { "name": "DB_PORT", "value": "5432" }
+        ]
+      }
+    ]
+  }
+  

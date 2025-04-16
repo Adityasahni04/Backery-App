@@ -1,0 +1,23 @@
+{
+  "family": "bakery-frontend-task",
+  "requiresCompatibilities": ["FARGATE"],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::794038217891:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "bakery-frontend",
+      "image": "794038217891.dkr.ecr.ap-south-1.amazonaws.com/bakrey-frontend1",
+      "essential": true,
+      "memory": 512,
+      "cpu": 256,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,19 @@
+# Stage 1: Build the Vite app
+FROM node:18 as builder
 
+WORKDIR /app
+COPY . .
+
+# Set environment variable during build
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+RUN npm install && npm run build
+
+# Stage 2: Serve with Nginx
 FROM nginx:alpine
 
-COPY dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80 to access the app
 EXPOSE 80
-
-# Start Nginx when the container runs
 CMD ["nginx", "-g", "daemon off;"]
