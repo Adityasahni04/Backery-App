@@ -7,28 +7,7 @@ A modern solution for bakery inventory management with a microservices architect
 The Bakery Management System helps bakery owners track and manage their inventory with ease. Admins can add, update, delete, and monitor stock levels of bakery items through a clean React interface backed by a powerful Node.js API.
 
 ## 🏗️ System Architecture
-
-```
-┌─────────────────┐      ┌─────────────────┐
-│                 │      │                 │
-│  React Frontend │◄────►│  Node.js API    │
-│                 │      │                 │
-└─────────────────┘      └────────┬────────┘
-                                  │
-                                  ▼
-                         ┌─────────────────┐
-                         │                 │
-                         │   RabbitMQ      │
-                         │                 │
-                         └────────┬────────┘
-                                  │
-                                  ▼
-                         ┌─────────────────┐
-                         │                 │
-                         │   PostgreSQL    │
-                         │                 │
-                         └─────────────────┘
-```
+![Project Screenshot](https://github.com/user-attachments/assets/710c1fa9-a972-45ed-ba10-6bcadf10a158)
 
 - **Frontend**: React.js for user interface
 - **Backend**: Node.js with Express for business logic and API
