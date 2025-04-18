@@ -33,7 +33,7 @@ Getting started is simple with our Docker setup:
 
 3. **Access the application**
    ```
-   http://localhost:3000
+   http://localhost:80
    ```
 
 That's it! The entire system will be up and running with all services communicating properly.
